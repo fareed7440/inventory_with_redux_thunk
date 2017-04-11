@@ -1,9 +1,11 @@
 import  LoginReducer from './loginReducer'
 import {combineReducers} from 'redux'
-
+import storeReducer from './storeReducer'
 const mainReducer = combineReducers(
     {
-        inventoryApplicationn : LoginReducer
+        inventoryApplication : LoginReducer,
+      storeReducer
+
     }
 )
 

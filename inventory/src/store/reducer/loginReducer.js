@@ -7,6 +7,7 @@ import Actions from '../action/actionTypes'
                 var loginState = Object.assign({},state,{login:action.data})
                   state = loginState
                 return state;
+                
 
     }
     default:

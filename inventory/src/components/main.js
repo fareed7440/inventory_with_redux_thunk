@@ -4,6 +4,7 @@ import "../index.css"
 //import PropTypes from 'prop-types';
 //import {Link} from "react-router"
 import {Link}  from 'react-router'
+import { orange500, blue500,purple700} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
     import Drawer from 'material-ui/Drawer';
@@ -70,7 +71,7 @@ const tilesData = [
 const styless = {
   customWidth: {
     width: 150,
-     backgroundColor: '#7B1FA2',
+     backgroundColor: 'purple700',
   },
 };
 
@@ -116,7 +117,7 @@ class Main extends React.Component{
 
 
     <Drawer width={300} openSecondary={false} open={this.state.open} >
-          <AppBar title="Dashboard"
+          <AppBar title="INFO"
            style = {{backgroundColor:'#7B1FA2',textAlign:'center'}}
            />
   
@@ -135,8 +136,8 @@ class Main extends React.Component{
           /></ Link><br /><br /><br />
           <Link to=''> <RaisedButton
             fullWidth
-           style = {{backgroundColor:'#4A148C'}}
-           style={styless}
+           style = {{backgroundColor:purple700}}
+          // style={styless}
             onTouchTap={this.handleTouchTap}
 
             label="Add Product"
