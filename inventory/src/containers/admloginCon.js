@@ -11,8 +11,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        AdminLogin: (loginData) => dispatch(adminLogin(loginData))
-
+        AdminLogin: (loginData) => dispatch(adminLogin(loginData)),
+      
     }
 }
 

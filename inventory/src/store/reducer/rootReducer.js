@@ -6,7 +6,7 @@ const mainReducer = combineReducers(
     {
         inventoryApplication: LoginReducer,
         storeReducer,
-        addproductReducer
+       addproductReducer
 
     }
 )

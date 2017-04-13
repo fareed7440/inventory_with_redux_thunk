@@ -7,9 +7,9 @@ export function storeAction(storeData){
        
         dispatch(StoreAction());
         return DB.database.ref('/stores').push(storeData).then((data)=>{
-              alert("sucessfully create Store")
+            //   alert("sucessfully create Store")
           dispatch( StoreActionSuccess(data))
-          
+            alert("sucessfully create Store")
         })
         .catch((error)=>{
             dispatch((StoreActionFailed(error)))

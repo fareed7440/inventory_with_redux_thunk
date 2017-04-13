@@ -61,7 +61,7 @@ class Store extends React.Component {
             location: location,
         }
         console.log('1111111',obj)
-       this.props.StoreAction(obj)
+       this.props.storeDataRequest(obj)
     }
 
 

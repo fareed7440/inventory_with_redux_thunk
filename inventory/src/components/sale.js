@@ -34,43 +34,25 @@ const styless = {
         color: blue500,
     },
 };
-class Addproduct extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            arr: [],
-            product: '', company: '', quantity: '', price: '', date: new Date(), store: '',
-        }
-        this.handleFormType = this.handleFormType.bind(this);
-        this.handleInputType = this.handleInputType.bind(this)
-        // console.log("heeellllllllllllllllllllllllo"  ,this.props.inventoryApplication)
-    }
-    // componentWillMount() {
-    //     this.setState({ arr: this.props.app })
-    // }
-    handleInputType = (e) => {
-        const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value
 
-        const name = target.name;
-        // const value = target.value;
-        this.setState({
-            [name]: value
-        })
-    }
 
-    handleDateChange = (event, datee) => {
-        this.setState({
-            date: datee,
-        });
-        console.log(datee);
-    };
-
-    componentDidMount() {
-        this.props.storedata()
+class Sale extends React.Component{
+constructor(props){
+    super(props)
+    this.state = {
+        product : '',
+        store : '',
+        quantity : '',
+        price :'',
+        date:new Date()
     }
-    handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
-    handleFormType = (e) => {
+}
+componentDidMount(){
+    
+}
+ handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
+  handleProductname = (event, index, value) => { this.setState({ product: value }); console.log(value) }
+handleFormType = (e) => {
         const month = ["Jan", "Feb", "Mar", "April", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov"];
         const getmonth = this.state.date.getMonth();
         const months = month[getmonth];
@@ -78,15 +60,13 @@ class Addproduct extends React.Component {
         const timeconvention = this.state.date.getHours() > 12 ? "PM" : "AM";
 
         e.preventDefault();
-        var product = this.refs.product.getValue();
-        var company = this.refs.company.getValue();
+        var product = this.state.product
         var quantity = parseInt(this.refs.quantity.getValue())
         var price = parseInt(this.refs.price.getValue())
         var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
         var store = this.state.store;
         var obj = {
             product: product,
-            company: company,
             quantity: quantity,
             price: parseInt(price * quantity),
             date: date,
@@ -96,20 +76,13 @@ class Addproduct extends React.Component {
         this.props.addPropductRequest(obj)
     }
 
+render(){
+    return(
+        <div>
 
-    render() {
-        const app = this.props.app.store;
-        console.log("ffffffffffffffffffffffffff" , app)
-    //    const storedaata = this.props.inventoryApplication.addproductReducer.store;
-    //    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee" , storedaata)
 
-        const Addstore = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
-        console.log("ADDSTORE" , Addstore)
-        return (
-            <div>
-
-                <AppBar
-                    title="Add Product"
+   <AppBar
+                    title="Sale"
                     style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
                     //style = {{textAlign:'center'}}
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
@@ -130,17 +103,7 @@ class Addproduct extends React.Component {
                                 onChange={this.handleInputType}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                             /><br /><br />
-                            <TextField
-                                ref='company'
-                                name='company'
-                                type='text'
-                                required={true}
-                                hintText='type Here'
-                                onChange={this.handleInputType}
-                                floatingLabelText="Enter company Name "
-                                floatingLabelStyle={styless.floatingLabelStyle}
-                                floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
-                            /><br /><br />
+                            
                             <TextField
                                 ref='quantity'
                                 name='quantity'
@@ -208,6 +171,12 @@ class Addproduct extends React.Component {
         )
     }
 
-}//main
 
-export default Addproduct;
+
+
+
+        
+   
+
+
+}

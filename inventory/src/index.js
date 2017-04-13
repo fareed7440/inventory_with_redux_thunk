@@ -6,6 +6,7 @@ import Main from './components/main'
 import LoginContainer from './containers/admloginCon'
 import store from './store/store'
 import { Provider } from 'react-redux';
+import AddproductContainer from './containers/addproductCon'
 import StoreContainer from './containers/storeCon'
 import {
   browserHistory, Router, Route, IndexRoute, IndexRedirect, Link, IndexLink
@@ -28,6 +29,7 @@ export class Routing extends Component {
                 <Route exact path="/" component={LoginContainer}></Route>
                 <Route path="/main" component={Main}></Route>
                  <Route path="/storeCon" component={StoreContainer}></Route>
+                 <Route path="/addproductCon" component={AddproductContainer}></Route>
 
            
             </Router>

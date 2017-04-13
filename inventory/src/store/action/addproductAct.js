@@ -3,8 +3,8 @@ import * as DB from '../../firebase/database'
 
 
 function addproduct(productData){
-    dispatch=>{
-        return dispatch(addproductRequest());
+  return  dispatch=>{
+       dispatch(addproductRequest());
         return DB.database.ref('/products').push(productData).then((data)=>{
             dispatch(addproductRequestSuccess(data));
             alert('successfully added product')
@@ -36,3 +36,5 @@ export function addproductRequestFailed(){
         type: Actions.ADDPRODUCTREQUESTFAILED
     }
 }
+
+export default addproduct;
