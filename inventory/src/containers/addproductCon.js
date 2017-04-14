@@ -7,7 +7,8 @@ import {getStoreData} from '../store/action/getstoredata'
 
 function mapStateToProps(state){
     return{
-      app: state.addproductReducer
+      app: state.addproductReducer,
+     
     }
 }
 

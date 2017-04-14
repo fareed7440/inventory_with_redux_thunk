@@ -40,15 +40,20 @@ class Sale extends React.Component{
 constructor(props){
     super(props)
     this.state = {
+        arr:'',
         product : '',
         store : '',
         quantity : '',
         price :'',
         date:new Date()
     }
+   
 }
 componentDidMount(){
-    
+    this.props.storedata ();
+    this.props.productdata();
+    console.log('wwwwww',this.props.storedata)
+    console.log('eeee',this.props.productdata)
 }
  handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
   handleProductname = (event, index, value) => { this.setState({ product: value }); console.log(value) }
@@ -73,10 +78,19 @@ handleFormType = (e) => {
             store: store
         }
         console.log('1111111', obj)
-        this.props.addPropductRequest(obj)
+        this.props.addSaleRequest(obj)
     }
 
 render(){
+const app1 = this.props.app.product;
+console.log('zxcvv',app1)
+const app = this.props.app.store;
+console.log('aasdf',app)
+     const Addsale = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
+     console.log('qqqqqqqqqqqqq',Addsale)
+ const Addproduct = this.props && this.props.app && this.props.app.product ? this.props.app.product : [];
+ console.log('rrrrrrrrrrrrrrrr',Addproduct)
+     
     return(
         <div>
 
@@ -91,18 +105,26 @@ render(){
 
                 <center>
                     <Paper style={styles} zDepth={5} rounded={false} >
-                        <form onSubmit={this.handleFormType}>
-                            <TextField
+                        <form onSubmit={this.handleFormType.bind(this)}>
+                            <SelectField
+                                multiple={true}
+                                  floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
+                                floatingLabelText="Select product "
                                 ref='product'
                                 name='product'
                                 type='text'
-                                required={true}
-                                hintText='type Here'
-                                floatingLabelText="Enter product Name"
-                                floatingLabelStyle={styless.floatingLabelStyle}
-                                onChange={this.handleInputType}
-                                floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
-                            /><br /><br />
+                                value={this.state.product}
+                                onChange={this.handleProductname}
+                            >
+                                {
+                                    Addproduct.map((v, i) => {
+                                        return (
+                                            <MenuItem value={v.product} key={i} primaryText={v.product}></MenuItem>
+                                        )
+                                    })}
+
+                            </SelectField><br /><br />
                             
                             <TextField
                                 ref='quantity'
@@ -152,7 +174,7 @@ render(){
                                 onChange={this.handleStorename}
                             >
                                 {
-                                    Addstore.map((v, i) => {
+                                    Addsale.map((v, i) => {
                                         return (
                                             <MenuItem value={v.store} key={i} primaryText={v.store}></MenuItem>
                                         )
@@ -170,13 +192,7 @@ render(){
             </div>
         )
     }
-
-
-
-
-
-        
-   
-
-
 }
+
+
+export default Sale;
