@@ -126,7 +126,7 @@ class Main extends React.Component{
           <br /> <br />
 
 
-          <Link to=''> <RaisedButton
+          <Link to='main/storeCon'> <RaisedButton
             fullWidth
             style={styless}
             onTouchTap={this.handleTouchTap}
@@ -134,7 +134,7 @@ class Main extends React.Component{
             label="create Store"
             primary={false}
           /></ Link><br /><br /><br />
-          <Link to=''> <RaisedButton
+          <Link to='main/addproductCon'> <RaisedButton
             fullWidth
            style = {{backgroundColor:purple700}}
           // style={styless}

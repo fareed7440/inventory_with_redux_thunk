@@ -34,21 +34,21 @@ const styless = {
         color: blue500,
     },
 };
-class Addproduct extends React.Component {
-    constructor() {
-        super();
+
+
+class Purchase extends React.Component {
+    constructor(props) {
+        super(props)
         this.state = {
-            arr: [],
-            product: '', company: '', quantity: '', price: '', date: new Date(), store: '',
+            product: '',
+            store: '',
+            quantity: '',
+            price: '',
+            date: new Date()
         }
-        this.handleFormType = this.handleFormType.bind(this);
-        this.handleInputType = this.handleInputType.bind(this)
-        // console.log("heeellllllllllllllllllllllllo"  ,this.props.inventoryApplication)
+this.handleInputType= this.handleInputType.bind(this)
     }
-    // componentWillMount() {
-    //     this.setState({ arr: this.props.app })
-    // }
-    handleInputType = (e) => {
+     handleInputType = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value
 
@@ -58,92 +58,99 @@ class Addproduct extends React.Component {
             [name]: value
         })
     }
-
-    handleDateChange = (event, datee) => {
-        this.setState({
-            date: datee,
-        });
-        console.log(datee);
-    };
-
     componentDidMount() {
-        this.props.storedata()
+        this.props.storedata();
+        this.props.productdata();
+        console.log('wwwwww', this.props.storedata)
+        console.log('eeee', this.props.productdata)
     }
     handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
+    handleProductname = (event, index, value) => { this.setState({ product: value, key: value }); console.log(value) }
     handleFormType = (e) => {
+         e.preventDefault();
+        console.log("product ki state ", this.state.product)
         const month = ["Jan", "Feb", "Mar", "April", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov"];
         const getmonth = this.state.date.getMonth();
         const months = month[getmonth];
         const hours = this.state.date.getHours() > 12 ? this.state.date.getHours() - 12 : this.state.date.getHours();
         const timeconvention = this.state.date.getHours() > 12 ? "PM" : "AM";
 
-        e.preventDefault();
-        var product = this.refs.product.getValue();
-        var company = this.refs.company.getValue();
+        var id = this.state.product
+       var allid = id.toString().split('/');
+        // console.log("222222222222222222222222222" , ehsan)
+        var productName = allid[0];
+        var productId = allid[1];
+        console.log("Product Name is " , productName);
+        console.log("Product ki Id" , productId)
+        // console.log("Product id is " , productID);
+
+
+       
+        var product = productName;
+        var productid = productId;
         var quantity = parseInt(this.refs.quantity.getValue())
         var price = parseInt(this.refs.price.getValue())
         var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
         var store = this.state.store;
         var obj = {
             product: product,
-            company: company,
+            productID : productid,
             quantity: quantity,
             price: parseInt(price * quantity),
             date: date,
             store: store
         }
-        console.log('1111111', obj)
-        this.props.addPropductRequest(obj)
+        // console.log('1111111', obj)
+        this.props.addPurchaseRequest(obj)
+        console.log("product ki state" , obj)
     }
 
-
     render() {
+        const app1 = this.props.app.product;
+         console.log('ppppppppp',app1)
         const app = this.props.app.store;
-        console.log("ffffffffffffffffffffffffff" , app)
-    //    const storedaata = this.props.inventoryApplication.addproductReducer.store;
-    //    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee" , storedaata)
+         console.log('ssssssssssssssssssssss',app)
+        const Addsale = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
+        //  console.log('qqqqqqqqqqqqq',Addsale)
+        const Addproduct = this.props && this.props.app && this.props.app.product ? this.props.app.product : [];
+        //  console.log('rrrrrrrrrrrrrrrr',Addproduct)
 
-        const Addstore = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
-        console.log("ADDSTORE" , Addstore)
         return (
             <div>
 
-               
 
-
-                <center>
-
-
-                     <AppBar
-                    title="Add Product"
+                <AppBar
+                    title="Sale"
                     style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
                     //style = {{textAlign:'center'}}
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                 />
+
+
+                <center>
                     <Paper style={styles} zDepth={5} rounded={false} >
-                        <form onSubmit={this.handleFormType}>
-                            <TextField
+                        <form onSubmit={this.handleFormType.bind(this)}>
+                            <SelectField
+                                multiple={false}
+                                floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
+                                floatingLabelText="Select product "
                                 ref='product'
                                 name='product'
                                 type='text'
-                                required={true}
-                                hintText='type Here'
-                                floatingLabelText="Enter product Name"
-                                floatingLabelStyle={styless.floatingLabelStyle}
-                                onChange={this.handleInputType}
-                                floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
-                            /><br /><br />
-                            <TextField
-                                ref='company'
-                                name='company'
-                                type='text'
-                                required={true}
-                                hintText='type Here'
-                                onChange={this.handleInputType}
-                                floatingLabelText="Enter company Name "
-                                floatingLabelStyle={styless.floatingLabelStyle}
-                                floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
-                            /><br /><br />
+                                value={this.state.product}
+                                onChange={this.handleProductname}
+                            >
+                                {
+                                    Addproduct.map((v, i) => {
+                                        console.log("component : 122", v.key)
+                                        return (
+                                            <MenuItem value={v.product + "/" + v.key} key={i} primaryText={v.product}></MenuItem>
+                                        )
+                                    })}
+
+                            </SelectField><br /><br />
+
                             <TextField
                                 ref='quantity'
                                 name='quantity'
@@ -172,17 +179,17 @@ class Addproduct extends React.Component {
                                 container="inline"
                                 ref='date'
                                 name='date'
-                                 style={{ color: '#7B1FA2', textAlign: 'center' }}
-                                 
+                                style={{ color: '#7B1FA2', textAlign: 'center' }}
+
                                 floatingLabelText="Select Date "
-                               floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 onChange={this.handleDateChange}
 
                             /><br /><br />
                             <SelectField
                                 multiple={false}
-                                  floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 floatingLabelText="Select Store "
                                 ref='store'
@@ -192,7 +199,7 @@ class Addproduct extends React.Component {
                                 onChange={this.handleStorename}
                             >
                                 {
-                                    Addstore.map((v, i) => {
+                                    Addsale.map((v, i) => {
                                         return (
                                             <MenuItem value={v.store} key={i} primaryText={v.store}></MenuItem>
                                         )
@@ -210,7 +217,7 @@ class Addproduct extends React.Component {
             </div>
         )
     }
+}
 
-}//main
 
-export default Addproduct;
+export default Purchase;

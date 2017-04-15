@@ -1,5 +1,7 @@
 import Actions from '../action/actionTypes'
-const initialState = {}
+const initialState = {
+  product: []
+}
 function addproductReducer(state = initialState, action) {
 
   switch (action.type) {
@@ -13,7 +15,11 @@ function addproductReducer(state = initialState, action) {
       state = state01
       return state;
     }
-
+ case Actions.VIEWSALESUCCESS: {
+      var state01 = Object.assign({}, state, { saleData: action.data })
+      state = state01
+      return state;
+    }
  case Actions.ProductDataSuccess: {
       var state02 = Object.assign({}, state, { product: action.data })
       state = state02

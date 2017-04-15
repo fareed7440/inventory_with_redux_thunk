@@ -1,7 +1,7 @@
 import Actions from '../store/action/actionTypes'
-import Sale  from '../components/sale'
+import Purchase from '../components/addpurchase'
 import {connect } from 'react-redux'
-import  saleAction from '../store/action/saleAct'
+import  purchaseAction from '../store/action/purchaseAct'
 import {getStoreData} from '../store/action/getstoredata'
 import {getProductData} from '../store/action/getproductdata'
 function mapStateToProps(state){
@@ -15,12 +15,12 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         
-       addSaleRequest : (productdata) => dispatch(saleAction(productdata)),
+       addPurchaseRequest : (purchasedata) => dispatch(purchaseAction(purchasedata)),
         storedata : () => dispatch(getStoreData()),
         productdata : ()=> dispatch(getProductData())
     }
 }
 
 
-     const SaleContainer = connect(mapStateToProps,mapDispatchToProps)(Sale);
-           export default SaleContainer ;
+     const PurchaseContainer = connect(mapStateToProps,mapDispatchToProps)(Purchase);
+           export default PurchaseContainer ;

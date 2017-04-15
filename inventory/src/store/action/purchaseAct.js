@@ -1,26 +1,20 @@
 import Actions from './actionTypes'
 import * as DB from '../../firebase/database'
 
-export function saleAction(storeData){
+export function purchaseAction(storeData){
      console.log('222222222222',storeData)
     return dispatch =>{
        
-        dispatch(SaleAction());
+        dispatch(PurchaseAction());
         
             
            return DB.database.ref(`/products/`+storeData. productID).once('value',(snapshot)=>{
                
                console.log('vallllllllllllllllllllll',snapshot.val())
-           if(parseInt(snapshot.val().quantity) < storeData.quantity || parseInt(snapshot.val().price) < storeData . price){
-                alert('your Quantity or price is less than the sale data')
-                  
-
-                }
-                else{
                     let total  = {
 
-                          quantity: (parseInt(snapshot.val().quantity) - parseInt(storeData.quantity)),
-                    price: parseInt(snapshot.val().price) - storeData.price,
+                          quantity: (parseInt(snapshot.val().quantity) + parseInt(storeData.quantity)),
+                    price: parseInt(snapshot.val().price) + storeData.price,
                     store: storeData.store
 
                 }
@@ -35,13 +29,13 @@ export function saleAction(storeData){
         }
         console.log('hhjjjjjjjjjjjjjjjjjjjjjjjjj',saleObject)
 
-              return DB.database.ref('/sale').push(saleObject).then(()=>{
+              return DB.database.ref('/purchase').push(saleObject).then(()=>{
             alert("sucessfully add data")
-                   dispatch( SaleActionSuccess())
+                   dispatch( PurchaseActionSuccess())
           
             })
         .catch((error)=>{
-            dispatch((SaleActionFailed(error)))
+            dispatch((PurchaseActionFailed(error)))
             alert('failed')
         })
         
@@ -52,7 +46,7 @@ export function saleAction(storeData){
 
 
 
-}
+
             
             )
 
@@ -70,21 +64,21 @@ export function saleAction(storeData){
     }
 
 
-export function SaleAction(){
+export function PurchaseAction(){
     return{
-        type:Actions.ADDSALEREQUEST
+        type:Actions.ADDPURCHASEREQUEST
     }
 }
 
-export function SaleActionSuccess(data){
+export function PurchaseActionSuccess(data){
     return{
-        type: Actions.ADDSALEREQUESTSUCCESS,
+        type: Actions.ADDPURCHASEREQUESTSUCCESS,
         data
     }
 }
-export function SaleActionFailed(){
+export function PurchaseActionFailed(){
     return{
-        type: Actions.ADDSALEREQUESTFAILED
+        type: Actions.ADDPURCHASEREQUESTFAILED
     }
 }
-export default saleAction;
+export default purchaseAction;

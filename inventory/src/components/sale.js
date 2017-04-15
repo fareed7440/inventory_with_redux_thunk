@@ -36,66 +36,91 @@ const styless = {
 };
 
 
-class Sale extends React.Component{
-constructor(props){
-    super(props)
-    this.state = {
-        arr:'',
-        product : '',
-        store : '',
-        quantity : '',
-        price :'',
-        date:new Date()
+class Sale extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            arr: '',
+            product: '',
+            store: '',
+            quantity: '',
+            price: '',
+            date: new Date()
+        }
+this.handleInputType= this.handleInputType.bind(this)
     }
-   
-}
-componentDidMount(){
-    this.props.storedata ();
-    this.props.productdata();
-    console.log('wwwwww',this.props.storedata)
-    console.log('eeee',this.props.productdata)
-}
- handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
-  handleProductname = (event, index, value) => { this.setState({ product: value }); console.log(value) }
-handleFormType = (e) => {
+     handleInputType = (e) => {
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value
+
+        const name = target.name;
+        // const value = target.value;
+        this.setState({
+            [name]: value
+        })
+    }
+    componentDidMount() {
+        this.props.storedata();
+        this.props.productdata();
+        console.log('wwwwww', this.props.storedata)
+        console.log('eeee', this.props.productdata)
+    }
+    handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
+    handleProductname = (event, index, value) => { this.setState({ product: value, key: value }); console.log(value) }
+    handleFormType = (e) => {
+         e.preventDefault();
+        console.log("product ki state ", this.state.product)
         const month = ["Jan", "Feb", "Mar", "April", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov"];
         const getmonth = this.state.date.getMonth();
         const months = month[getmonth];
         const hours = this.state.date.getHours() > 12 ? this.state.date.getHours() - 12 : this.state.date.getHours();
         const timeconvention = this.state.date.getHours() > 12 ? "PM" : "AM";
 
-        e.preventDefault();
-        var product = this.state.product
+        var khan = this.state.product
+       var ehsan = khan.toString().split('/');
+        // console.log("222222222222222222222222222" , ehsan)
+        var productName = ehsan[0];
+        var productId = ehsan[1];
+        console.log("Product Name is " , productName);
+        console.log("Product ki Id" , productId)
+        // console.log("Product id is " , productID);
+
+
+       
+        var product = productName;
+        var productid = productId;
         var quantity = parseInt(this.refs.quantity.getValue())
         var price = parseInt(this.refs.price.getValue())
         var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
         var store = this.state.store;
         var obj = {
             product: product,
+            productID : productid,
             quantity: quantity,
             price: parseInt(price * quantity),
             date: date,
             store: store
         }
-        console.log('1111111', obj)
+        // console.log('1111111', obj)
         this.props.addSaleRequest(obj)
+        console.log("product ki state" , obj)
     }
 
-render(){
-const app1 = this.props.app.product;
-console.log('zxcvv',app1)
-const app = this.props.app.store;
-console.log('aasdf',app)
-     const Addsale = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
-     console.log('qqqqqqqqqqqqq',Addsale)
- const Addproduct = this.props && this.props.app && this.props.app.product ? this.props.app.product : [];
- console.log('rrrrrrrrrrrrrrrr',Addproduct)
-     
-    return(
-        <div>
+    render() {
+        const app1 = this.props.app.product;
+        // console.log('zxcvv',app1)
+        const app = this.props.app.store;
+        // console.log('aasdf',app)
+        const Addsale = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
+        //  console.log('qqqqqqqqqqqqq',Addsale)
+        const Addproduct = this.props && this.props.app && this.props.app.product ? this.props.app.product : [];
+        //  console.log('rrrrrrrrrrrrrrrr',Addproduct)
+
+        return (
+            <div>
 
 
-   <AppBar
+                <AppBar
                     title="Sale"
                     style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
                     //style = {{textAlign:'center'}}
@@ -107,8 +132,8 @@ console.log('aasdf',app)
                     <Paper style={styles} zDepth={5} rounded={false} >
                         <form onSubmit={this.handleFormType.bind(this)}>
                             <SelectField
-                                multiple={true}
-                                  floatingLabelStyle={styless.floatingLabelStyle}
+                                multiple={false}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 floatingLabelText="Select product "
                                 ref='product'
@@ -119,13 +144,14 @@ console.log('aasdf',app)
                             >
                                 {
                                     Addproduct.map((v, i) => {
+                                        console.log("component : 122", v.key)
                                         return (
-                                            <MenuItem value={v.product} key={i} primaryText={v.product}></MenuItem>
+                                            <MenuItem value={v.product + "/" + v.key} key={i} primaryText={v.product}></MenuItem>
                                         )
                                     })}
 
                             </SelectField><br /><br />
-                            
+
                             <TextField
                                 ref='quantity'
                                 name='quantity'
@@ -154,17 +180,17 @@ console.log('aasdf',app)
                                 container="inline"
                                 ref='date'
                                 name='date'
-                                 style={{ color: '#7B1FA2', textAlign: 'center' }}
-                                 
+                                style={{ color: '#7B1FA2', textAlign: 'center' }}
+
                                 floatingLabelText="Select Date "
-                               floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 onChange={this.handleDateChange}
 
                             /><br /><br />
                             <SelectField
-                                multiple={true}
-                                  floatingLabelStyle={styless.floatingLabelStyle}
+                                multiple={false}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 floatingLabelText="Select Store "
                                 ref='store'
