@@ -9,7 +9,7 @@ function viewSaleRequest(){
                 var data = ChildSnapshot.val();
                 salesData.push(data); 
             })
-            // console.log("daaaaaaaaaaaaaaa" , arr)
+             console.log("daaaaaaaaaaaaaaa" , salesData)
             dispatch(ViewSaleRequestSuccess(salesData))
         })
     } 

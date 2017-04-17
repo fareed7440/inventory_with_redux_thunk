@@ -88,7 +88,7 @@ class Addproduct extends React.Component {
             product: product,
             company: company,
             quantity: quantity,
-            price: parseInt(price * quantity),
+            price: price,
             date: date,
             store: store
         }

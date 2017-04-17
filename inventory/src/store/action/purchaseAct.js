@@ -14,7 +14,7 @@ export function purchaseAction(storeData){
                     let total  = {
 
                           quantity: (parseInt(snapshot.val().quantity) + parseInt(storeData.quantity)),
-                    price: parseInt(snapshot.val().price) + storeData.price,
+                    price: parseInt(snapshot.val().price) - storeData.price,
                     store: storeData.store
 
                 }

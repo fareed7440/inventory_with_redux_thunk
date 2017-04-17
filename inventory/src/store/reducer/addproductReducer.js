@@ -16,10 +16,16 @@ function addproductReducer(state = initialState, action) {
       return state;
     }
  case Actions.VIEWSALESUCCESS: {
-      var state01 = Object.assign({}, state, { saleData: action.data })
-      state = state01
+      var state03 = Object.assign({}, state, { saleData: action.data })
+      state = state03
       return state;
     }
+     case Actions.VIEWPURCHASESUCCESS: {
+      var state04 = Object.assign({}, state, { purchaseData: action.data })
+      state = state04
+      return state;
+    }
+ 
  case Actions.ProductDataSuccess: {
       var state02 = Object.assign({}, state, { product: action.data })
       state = state02

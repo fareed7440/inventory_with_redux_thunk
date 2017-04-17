@@ -9,8 +9,9 @@ import { Provider } from 'react-redux';
 import AddproductContainer from './containers/addproductCon'
 import StoreContainer from './containers/storeCon'
 import SaleContainer from './containers/saleCon'
-import ViewSaleContainer from './containers/viewsaleCon'
+import ViewSaleContainer from './containers/viewsalCon'
 import PurchaseContainer from './containers/purchaseCon'
+import ViewPurchaseContainer from './containers/viewpurchaseCon'
 import {
   browserHistory, Router, Route, IndexRoute, IndexRedirect, Link, IndexLink
 } from 'react-router';
@@ -35,7 +36,8 @@ export class Routing extends Component {
                  <Route path="/addproductCon" component={AddproductContainer}></Route>
                   <Route path="/saleCon" component={SaleContainer}></Route>
                   <Route path="/purchaseCon" component={PurchaseContainer}></Route>
-             <Route path="/viewsaleCon" component={ViewSaleContainer}></Route>
+             <Route path="/viewsalCon" component={ViewSaleContainer}></Route>
+             <Route path="/viewpurchaseCon" component={ViewPurchaseContainer}></Route>
            
             </Router>
 

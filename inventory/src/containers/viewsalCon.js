@@ -1,5 +1,5 @@
 import Actions from '../store/action/actionTypes'
-import  ViewSale  from '../components/viewsale'
+import  ViewSale from '../components/viewsale'
 import {connect } from 'react-redux'
 import  viewSaleRequest from '../store/action/viewsaleAct'
 //import {getStoreData} from '../store/action/getstoredata'
@@ -21,5 +21,5 @@ function mapDispatchToProps(dispatch){
 }
 
 
-     const ViewSaleContainer = connect(mapStateToProps,mapDispatchToProps)( ViewSale);
+     const ViewSaleContainer = connect(mapStateToProps,mapDispatchToProps)(ViewSale);
            export default ViewSaleContainer ;
