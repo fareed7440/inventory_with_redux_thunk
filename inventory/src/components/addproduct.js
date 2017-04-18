@@ -99,29 +99,29 @@ class Addproduct extends React.Component {
 
     render() {
         const app = this.props.app.store;
-        console.log("ffffffffffffffffffffffffff" , app)
-    //    const storedaata = this.props.inventoryApplication.addproductReducer.store;
-    //    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee" , storedaata)
+        console.log("ffffffffffffffffffffffffff", app)
+        //    const storedaata = this.props.inventoryApplication.addproductReducer.store;
+        //    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee" , storedaata)
 
         const Addstore = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
-        console.log("ADDSTORE" , Addstore)
+        console.log("ADDSTORE", Addstore)
         return (
             <div>
 
-               
+
 
 
                 <center>
 
 
-                     
+
                     <Paper style={styles} zDepth={5} rounded={false} >
-<AppBar
-                    title="Add Product"
-                    style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
-                    //style = {{textAlign:'center'}}
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
-                />
+                        <AppBar
+                            title="Add Product"
+                            style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
+                            //style = {{textAlign:'center'}}
+                            iconClassNameRight="muidocs-icon-navigation-expand-more"
+                        />
 
 
                         <form onSubmit={this.handleFormType}>
@@ -175,17 +175,17 @@ class Addproduct extends React.Component {
                                 container="inline"
                                 ref='date'
                                 name='date'
-                                 style={{ color: '#7B1FA2', textAlign: 'center' }}
-                                 
+                                style={{ color: '#7B1FA2', textAlign: 'center' }}
+
                                 floatingLabelText="Select Date "
-                               floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 onChange={this.handleDateChange}
 
                             /><br /><br />
                             <SelectField
                                 multiple={false}
-                                  floatingLabelStyle={styless.floatingLabelStyle}
+                                floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 floatingLabelText="Select Store "
                                 ref='store'

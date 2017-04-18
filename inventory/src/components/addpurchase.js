@@ -46,9 +46,9 @@ class Purchase extends React.Component {
             price: '',
             date: new Date()
         }
-this.handleInputType= this.handleInputType.bind(this)
+        this.handleInputType = this.handleInputType.bind(this)
     }
-     handleInputType = (e) => {
+    handleInputType = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value
 
@@ -67,7 +67,7 @@ this.handleInputType= this.handleInputType.bind(this)
     handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
     handleProductname = (event, index, value) => { this.setState({ product: value, key: value }); console.log(value) }
     handleFormType = (e) => {
-         e.preventDefault();
+        e.preventDefault();
         console.log("product ki state ", this.state.product)
         const month = ["Jan", "Feb", "Mar", "April", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov"];
         const getmonth = this.state.date.getMonth();
@@ -76,16 +76,16 @@ this.handleInputType= this.handleInputType.bind(this)
         const timeconvention = this.state.date.getHours() > 12 ? "PM" : "AM";
 
         var id = this.state.product
-       var allid = id.toString().split('/');
+        var allid = id.toString().split('/');
         // console.log("222222222222222222222222222" , ehsan)
         var productName = allid[0];
         var productId = allid[1];
-        console.log("Product Name is " , productName);
-        console.log("Product ki Id" , productId)
+        console.log("Product Name is ", productName);
+        console.log("Product ki Id", productId)
         // console.log("Product id is " , productID);
 
 
-       
+
         var product = productName;
         var productid = productId;
         var quantity = parseInt(this.refs.quantity.getValue())
@@ -94,7 +94,7 @@ this.handleInputType= this.handleInputType.bind(this)
         var store = this.state.store;
         var obj = {
             product: product,
-            productID : productid,
+            productID: productid,
             quantity: quantity,
             price: parseInt(price * quantity),
             date: date,
@@ -102,14 +102,14 @@ this.handleInputType= this.handleInputType.bind(this)
         }
         // console.log('1111111', obj)
         this.props.addPurchaseRequest(obj)
-        console.log("product ki state" , obj)
+        console.log("product ki state", obj)
     }
 
     render() {
         const app1 = this.props.app.product;
-         console.log('ppppppppp',app1)
+        console.log('ppppppppp', app1)
         const app = this.props.app.store;
-         console.log('ssssssssssssssssssssss',app)
+        console.log('ssssssssssssssssssssss', app)
         const Addsale = this.props && this.props.app && this.props.app.store ? this.props.app.store : [];
         //  console.log('qqqqqqqqqqqqq',Addsale)
         const Addproduct = this.props && this.props.app && this.props.app.product ? this.props.app.product : [];
@@ -124,13 +124,13 @@ this.handleInputType= this.handleInputType.bind(this)
                 <center>
                     <Paper style={styles} zDepth={5} rounded={false} >
 
-                        
-                <AppBar
-                    title="Add Purhase"
-                    style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
-                    //style = {{textAlign:'center'}}
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
-                />
+
+                        <AppBar
+                            title="Add Purhase"
+                            style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
+                            //style = {{textAlign:'center'}}
+                            iconClassNameRight="muidocs-icon-navigation-expand-more"
+                        />
                         <form onSubmit={this.handleFormType.bind(this)}>
                             <SelectField
                                 multiple={false}

@@ -13,61 +13,6 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
-
-
-// const styles = {
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     justifyContent: 'space-around',
-//   },
-//   gridList: {
-//     width: 700,
-//     height: 750,
-//     margin: 50,
-//     marginLeft: 400,
-//     overflowY: 'auto',
-//   },
-// };
-
-
-// const tilesData = [
-//   {
-//     img: 'https://www.unleashedsoftware.com/assets/uploads/2016/03/Real-time_img01.png',
-//     title: 'Hats',
-//     author: 'Hans',
-//   },
-//   {
-//     img: 'https://www.neatoscan.com/images/InventoryManager/grow_your_business_with_neatoscan_inventory_manager.jpg',
-//     title: 'Honey',
-//     author: 'fancycravel',
-//   },
-//   {
-//     img: 'http://empowerla.org/wp-content/uploads/2016/09/inventory.jpg',
-//     title: 'inventory managment',
-//     author: 'agha',
-//   },
-//   {
-//     img: 'http://www.simmssoftware.com/wordpress/wp-content/uploads/2013/06/simms_aggregateInventory.jpg',
-//     title: 'inventory shop',
-//     author: 'ihsan',
-//   },
-
-//   {
-//     img: 'http://wp.evinciblesolutions.com/wp-content/uploads/2016/03/what-is-inventory-management.png',
-//     title: 'inventory srock',
-//     author: 'Danson67',
-//   },
-//   {
-//     img: 'http://www.dataonesoftware.com/hubfs/BlogPost39.jpg',
-//     title: 'inventory managment',
-//     author: 'fancycrave1',
-//   },
-
-// ];
-
-
-
 const styless = {
   customWidth: {
     width: 150,
@@ -95,31 +40,11 @@ class Main extends React.Component {
           title="Dashboard"
           onTouchTap={this.handleToggle}
           style={{ backgroundColor: '#7B1FA2', textAlign: 'center', height: '66' }}
-          //style = {{textAlign:'center'}}
+
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
 
-        {/*<div style={styles.root}>
-          <GridList
-            cellHeight={250}
-            style={styles.gridList}
-          >
 
-            {tilesData.map((tile) => (
-              <GridTile
-                key={tile.img}
-                title={tile.title}
-                subtitle={<span>by <b>{tile.author}</b></span>}
-                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-              >
-                <img src={tile.img} />
-              </GridTile>
-            ))}
-          </GridList>*/}
-
-        {/*<div>
-          {this.props.children}
-        </div>*/}
 
         <Drawer width={300} openSecondary={false} open={this.state.open} >
 
@@ -143,7 +68,6 @@ class Main extends React.Component {
           <Link to='/addproductCon'> <RaisedButton
             fullWidth
             style={{ backgroundColor: purple700 }}
-            // style={styless}
             onTouchTap={this.handleToggle}
 
             label="Add Product"
@@ -195,14 +119,14 @@ class Main extends React.Component {
 
 
         </Drawer>
-      <div>
-        {this.props.children}
-      </div>
+        <div>
+          {this.props.children}
+        </div>
       </div>
 
 
     )
-   
+
   }
 }
 export default Main;
