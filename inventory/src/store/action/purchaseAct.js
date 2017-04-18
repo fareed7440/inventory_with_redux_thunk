@@ -1,6 +1,6 @@
 import Actions from './actionTypes'
 import * as DB from '../../firebase/database'
-
+import { browserHistory } from 'react-router';
 export function purchaseAction(storeData) {
     console.log('222222222222', storeData)
     return dispatch => {
@@ -11,6 +11,12 @@ export function purchaseAction(storeData) {
         return DB.database.ref(`/products/` + storeData.productID).once('value', (snapshot) => {
 
             console.log('vallllllllllllllllllllll', snapshot.val())
+            console.log('priceeeeeeeeeeeeee',storeData.price)
+             console.log('productsssssssssssssssssss',storeData.product)
+            if(snapshot.val().price < storeData.price ||snapshot.val().product !== storeData.product ){
+                alert('you have lesss price in your stock or no have selected products')
+            }
+            else {
             let total = {
 
                 quantity: (parseInt(snapshot.val().quantity) + parseInt(storeData.quantity)),
@@ -30,18 +36,19 @@ export function purchaseAction(storeData) {
             console.log('hhjjjjjjjjjjjjjjjjjjjjjjjjj', saleObject)
 
             return DB.database.ref('/purchase').push(saleObject).then(() => {
-                alert("sucessfully add data")
+                
                 dispatch(PurchaseActionSuccess())
-
+                alert("sucessfully add data")
+browserHistory.push('/main')
             })
                 .catch((error) => {
                     dispatch((PurchaseActionFailed(error)))
                     alert('failed')
                 })
 
-
+            
         }
-
+        }
 
 
 

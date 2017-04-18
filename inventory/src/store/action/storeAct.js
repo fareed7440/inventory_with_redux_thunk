@@ -1,6 +1,6 @@
 import Actions from './actionTypes'
 import * as DB from '../../firebase/database'
-
+import { browserHistory } from 'react-router';
 export function storeAction(storeData) {
     console.log('222222222222', storeData)
     return dispatch => {
@@ -10,6 +10,7 @@ export function storeAction(storeData) {
             //   alert("sucessfully create Store")
             dispatch(StoreActionSuccess(data))
             alert("sucessfully create Store")
+             browserHistory.push('/main')
         })
             .catch((error) => {
                 dispatch((StoreActionFailed(error)))

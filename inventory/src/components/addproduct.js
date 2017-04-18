@@ -71,6 +71,7 @@ class Addproduct extends React.Component {
     }
     handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
     handleFormType = (e) => {
+         console.log("product ki state ", this.state.product)
         const month = ["Jan", "Feb", "Mar", "April", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov"];
         const getmonth = this.state.date.getMonth();
         const months = month[getmonth];
@@ -82,13 +83,16 @@ class Addproduct extends React.Component {
         var company = this.refs.company.getValue();
         var quantity = parseInt(this.refs.quantity.getValue())
         var price = parseInt(this.refs.price.getValue())
+        
         var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
+       
+      //  var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
         var store = this.state.store;
         var obj = {
             product: product,
             company: company,
             quantity: quantity,
-            price: price,
+           price: parseInt(price * quantity),
             date: date,
             store: store
         }

@@ -1,6 +1,15 @@
 import React from 'react'
+import Paper from 'material-ui/Paper';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-
+const style = {
+    height: 80,
+    width: 300,
+    margin: 20,
+    backgroundColor: '#7B1FA2',
+    color:'white',
+    textAlign: 'center',
+    display: 'inline-block',
+};
 class ViewStock extends React.Component {
     constructor(props) {
         super(props)
@@ -16,7 +25,11 @@ class ViewStock extends React.Component {
         console.log('wievvvvvvvv', viewstock)
         return (
             <div>
-
+ <center>
+                    <Paper style={style} zDepth={1} >
+                        <h3 style={{ textAlign: 'center' }}>    VIEW STOCK</h3>
+                    </Paper>
+                </center>
                 <Table>
                     <TableHeader>
                         <TableRow >

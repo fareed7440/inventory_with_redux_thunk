@@ -1,6 +1,6 @@
 import Actions from './actionTypes'
 import * as DB from '../../firebase/database'
-
+import { browserHistory } from 'react-router';
 function adminLogin(loginUser) {
     return dispatch => {
         dispatch(AdminLogin());
@@ -10,6 +10,7 @@ function adminLogin(loginUser) {
                     var all = snap.val()
                     dispatch(AdminLoginSuccess(all))
                     alert('login success')
+                    browserHistory.push('/main')
                 })
             })
             .catch((error) => {

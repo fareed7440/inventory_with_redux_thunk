@@ -1,6 +1,6 @@
 import Actions from './actionTypes'
 import * as DB from '../../firebase/database'
-
+import { browserHistory } from 'react-router';
 
 function addproduct(productData) {
     return dispatch => {
@@ -15,6 +15,7 @@ function addproduct(productData) {
             else {
                 dispatch(addproductRequestSuccess())
                 alert('successfully added')
+                browserHistory.push('/main')
             }
         });
         // return DB.database.ref('/products').push(productData).then((data)=>{

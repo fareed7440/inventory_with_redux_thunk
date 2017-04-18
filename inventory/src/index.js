@@ -31,8 +31,8 @@ export class Routing extends Component {
             <Router history={browserHistory}>
 
 
-              <Route exact path="/" component={LoginContainer}></Route>
-
+              <Route  path="/" component={LoginContainer}></Route>
+  <Route path="/admin" component={LoginContainer}></Route>
               <Route path="/main" component={Main}>
 
                 <Route path="/storeCon" component={StoreContainer}></Route>

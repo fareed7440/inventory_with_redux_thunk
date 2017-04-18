@@ -13,6 +13,12 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
+import FlatButton from 'material-ui/FlatButton';
+
+const style = {
+  margin: 15,
+  backgroundColor: 'transparent',
+};
 const styless = {
   customWidth: {
     width: 150,
@@ -25,7 +31,7 @@ class Main extends React.Component {
   constructor() {
     super();
     this.state = {
-      open: false
+      open: true
     }
   }
 
@@ -42,9 +48,10 @@ class Main extends React.Component {
           style={{ backgroundColor: '#7B1FA2', textAlign: 'center', height: '66' }}
 
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-        />
+        >
+          <Link to='/admin'>  <RaisedButton label="Logout" primary={false} style={style} /></ Link>
 
-
+        </AppBar>
 
         <Drawer width={300} openSecondary={false} open={this.state.open} >
 

@@ -1,5 +1,6 @@
 import Actions from './actionTypes'
 import * as DB from '../../firebase/database'
+import { browserHistory } from 'react-router';
 function viewPurchaseRequest() {
     return dispatch => {
         dispatch(ViewPurchaseReques());
