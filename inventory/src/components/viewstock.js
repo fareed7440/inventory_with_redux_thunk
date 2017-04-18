@@ -1,18 +1,19 @@
 import React from 'react'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
-class ViewPurchase extends React.Component{
+class ViewStock extends React.Component{
    constructor(props){
     super(props)
 }
 
 componentDidMount(){
-    this.props. ViewPurchaseRequest()
+    this.props.ViewStockRequest()
 }
 
 render(){
- const viewpurchase = this.props && this.props.app && this.props.app.purchaseData ? this.props.app.purchaseData : [];
-console.log('wievvvvvvvv',viewpurchase)
+
+ const viewstock = this.props && this.props.stock && this.props. stock.stockdata ? this.props. stock.stockdata : [];
+console.log('wievvvvvvvv',viewstock)
     return(
         <div>
 
@@ -23,13 +24,14 @@ console.log('wievvvvvvvv',viewpurchase)
                             <TableHeaderColumn  style={{color:"#7B1FA2"}}>Product</TableHeaderColumn>
                             <TableHeaderColumn  style={{color:"#7B1FA2"}}>Quantity</TableHeaderColumn>
                             <TableHeaderColumn  style={{color:"#7B1FA2"}}>Store</TableHeaderColumn>
-                            <TableHeaderColumn style={{color:"#7B1FA2"}} >Date</TableHeaderColumn>
-                            <TableHeaderColumn style={{color:"#7B1FA2"}}>Total Price</TableHeaderColumn>
+                             <TableHeaderColumn style={{color:"#7B1FA2"}} >Date</TableHeaderColumn>
+                              <TableHeaderColumn style={{color:"#7B1FA2"}} >company</TableHeaderColumn>
+                            <TableHeaderColumn style={{color:"#7B1FA2"}}> Total Price</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
 
                     <TableBody>
-                        {viewpurchase.map((val, i) => {
+                        {viewstock.map((val, i) => {
                             console.log(val)
                             return (
                                 <TableRow key={i}>
@@ -38,6 +40,7 @@ console.log('wievvvvvvvv',viewpurchase)
                                     <TableRowColumn key={i}>{val.quantity}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.store}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.date}</TableRowColumn>
+                                    <TableRowColumn key={i}>{val.company}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.price}</TableRowColumn>
                                     
                                 </TableRow>
@@ -55,4 +58,4 @@ console.log('wievvvvvvvv',viewpurchase)
 }
 
 
-export default ViewPurchase;
+export default ViewStock;

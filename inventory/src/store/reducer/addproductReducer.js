@@ -25,6 +25,12 @@ function addproductReducer(state = initialState, action) {
       state = state04
       return state;
     }
+
+      case Actions.VIEWSTOCKSUCCESS: {
+      var state05 = Object.assign({}, state, {stockdata: action.data })
+      state = state05
+      return state;
+    }
  
  case Actions.ProductDataSuccess: {
       var state02 = Object.assign({}, state, { product: action.data })

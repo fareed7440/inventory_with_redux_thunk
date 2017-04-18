@@ -12,6 +12,7 @@ import SaleContainer from './containers/saleCon'
 import ViewSaleContainer from './containers/viewsalCon'
 import PurchaseContainer from './containers/purchaseCon'
 import ViewPurchaseContainer from './containers/viewpurchaseCon'
+import ViewStockContainer from './containers/viewstockCon'
 import {
   browserHistory, Router, Route, IndexRoute, IndexRedirect, Link, IndexLink
 } from 'react-router';
@@ -28,20 +29,23 @@ export class Routing extends Component {
         <MuiThemeProvider>
           <Provider store={store}>
             <Router history={browserHistory}>
-           
-         
-                <Route exact path="/" component={LoginContainer}></Route>
-                <Route path="/main" component={Main}></Route>
-                 <Route path="/storeCon" component={StoreContainer}></Route>
-                 <Route path="/addproductCon" component={AddproductContainer}></Route>
-                  <Route path="/saleCon" component={SaleContainer}></Route>
-                  <Route path="/purchaseCon" component={PurchaseContainer}></Route>
-             <Route path="/viewsalCon" component={ViewSaleContainer}></Route>
-             <Route path="/viewpurchaseCon" component={ViewPurchaseContainer}></Route>
-           
+
+
+              <Route exact path="/" component={LoginContainer}></Route>
+
+              <Route path="/main" component={Main}>
+
+                <Route path="/storeCon" component={StoreContainer}></Route>
+                <Route path="/addproductCon" component={AddproductContainer}></Route>
+                <Route path="/saleCon" component={SaleContainer}></Route>
+                <Route path="/purchaseCon" component={PurchaseContainer}></Route>
+                <Route path="/viewsalCon" component={ViewSaleContainer}></Route>
+                <Route path="/viewpurchaseCon" component={ViewPurchaseContainer}></Route>
+                <Route path="/viewstockCon" component={ViewStockContainer}></Route>
+
+              </Route>
+
             </Router>
-
-
           </Provider>
         </MuiThemeProvider>
 

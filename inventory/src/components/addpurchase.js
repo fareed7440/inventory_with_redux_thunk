@@ -119,16 +119,18 @@ this.handleInputType= this.handleInputType.bind(this)
             <div>
 
 
-                <AppBar
-                    title="Sale"
-                    style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
-                    //style = {{textAlign:'center'}}
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
-                />
 
 
                 <center>
                     <Paper style={styles} zDepth={5} rounded={false} >
+
+                        
+                <AppBar
+                    title="Add Purhase"
+                    style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
+                    //style = {{textAlign:'center'}}
+                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                />
                         <form onSubmit={this.handleFormType.bind(this)}>
                             <SelectField
                                 multiple={false}

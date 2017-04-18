@@ -69,16 +69,17 @@ class Store extends React.Component {
         return (
             <div>  
 
- <AppBar
+ 
+
+
+                <center>
+                    <Paper style={styles} zDepth={5} rounded={false} >
+                        <AppBar
     title="Create Store"
     style = {{backgroundColor:'#7B1FA2',textAlign:'center'}}
     //style = {{textAlign:'center'}}
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
-
-
-                <center>
-                    <Paper style={styles} zDepth={5} rounded={false} >
                 <form  onSubmit={this. handleFormType}>
                 <TextField
                     ref='store'

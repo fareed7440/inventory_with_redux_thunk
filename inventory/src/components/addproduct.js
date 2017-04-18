@@ -10,7 +10,7 @@ import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 const styles = {
-    height: 650,
+    height: 700,
     width: 450,
     margin: 120,
     textAlign: 'center',
@@ -114,13 +114,16 @@ class Addproduct extends React.Component {
                 <center>
 
 
-                     <AppBar
+                     
+                    <Paper style={styles} zDepth={5} rounded={false} >
+<AppBar
                     title="Add Product"
                     style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
                     //style = {{textAlign:'center'}}
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                 />
-                    <Paper style={styles} zDepth={5} rounded={false} >
+
+
                         <form onSubmit={this.handleFormType}>
                             <TextField
                                 ref='product'
