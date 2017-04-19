@@ -48,6 +48,7 @@ class Purchase extends React.Component {
         }
         this.handleInputType = this.handleInputType.bind(this)
     }
+    
     handleInputType = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value
@@ -64,6 +65,10 @@ class Purchase extends React.Component {
         console.log('wwwwww', this.props.storedata)
         console.log('eeee', this.props.productdata)
     }
+    handleDateChange = (event, datee) => {
+        this.setState({
+            date: datee,
+        });}
     handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
     handleProductname = (event, index, value) => { this.setState({ product: value, key: value }); console.log(value) }
     handleFormType = (e) => {
@@ -104,7 +109,7 @@ class Purchase extends React.Component {
         this.props.addPurchaseRequest(obj)
         console.log("product ki state", obj)
     }
-
+    
     render() {
         const app1 = this.props.app.product;
         console.log('ppppppppp', app1)

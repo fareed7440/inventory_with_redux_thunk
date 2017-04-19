@@ -59,12 +59,17 @@ class Sale extends React.Component {
             [name]: value
         })
     }
+    
     componentDidMount() {
         this.props.storedata();
         this.props.productdata();
         console.log('wwwwww', this.props.storedata)
         console.log('eeee', this.props.productdata)
     }
+    handleDateChange = (event, datee) => {
+        this.setState({
+            date: datee,
+        });}
     handleStorename = (event, index, value) => { this.setState({ store: value }); console.log(value) }
     handleProductname = (event, index, value) => { this.setState({ product: value, key: value }); console.log(value) }
     handleFormType = (e) => {
@@ -92,6 +97,12 @@ class Sale extends React.Component {
         var quantity = parseInt(this.refs.quantity.getValue())
         var price = parseInt(this.refs.price.getValue())
         var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
+        if(date > new Date()){
+            alert('invalid date')
+        }
+        else{
+            return date = new Date()
+        }
         var store = this.state.store;
         var obj = {
             product: product,

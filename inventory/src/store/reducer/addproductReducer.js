@@ -37,7 +37,11 @@ function addproductReducer(state = initialState, action) {
       state = state02
       return state;
     }
-
+ case Actions.LOGOUTSUCCESS: {
+      var state07 = Object.assign({},state , {logout  : action.data})
+      state = state07
+      return state;
+    }
 
     default:
       return state;

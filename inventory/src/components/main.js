@@ -12,8 +12,9 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-
 import FlatButton from 'material-ui/FlatButton';
+import { logoutRequest } from '../store/action/logoutAct'
+import { connect } from 'react-redux'
 
 const style = {
   margin: 15,
@@ -28,14 +29,20 @@ const styless = {
 
 
 class Main extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       open: true
     }
+    this.handlelogout = this.handlelogout.bind(this)
   }
 
   handleToggle = () => this.setState({ open: !this.state.open });
+handlelogout=()=>{
+
+  this.props.LogoutRequest()
+}
+
   render() {
     return (
       <div>
@@ -49,11 +56,11 @@ class Main extends React.Component {
 
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         >
-          <Link to='/admin'>  <RaisedButton label="Logout" primary={false} style={style} /></ Link>
+          {/*<Link to=''>  <RaisedButton label="Logout" primary={false} style={style} /></ Link>*/}
 
         </AppBar>
 
-        <Drawer width={300} openSecondary={false} open={this.state.open} >
+        <Drawer width={300} openSecondary={false} open={this.state.open} docked={true} >
 
           <AppBar title="INFO"
             style={{ backgroundColor: '#7B1FA2', textAlign: 'center' }}
@@ -123,6 +130,14 @@ class Main extends React.Component {
             label="View Stock "
             primary={false}
           /></ Link><br /><br /><br />
+          <RaisedButton
+          onClick={this.handlelogout}
+            fullWidth
+            style={styless}
+            onTouchTap={this.handleToggle}
+            label="logout "
+            primary={false}
+          /><br />
 
 
         </Drawer>
@@ -136,4 +151,23 @@ class Main extends React.Component {
 
   }
 }
-export default Main;
+
+
+const mapStateToProps=(state)=> {
+  return {
+    app: state.addproductReducer,
+  }
+}
+
+
+const mapDispatchToProps=(dispatch)=> {
+  return {
+
+    LogoutRequest: () => dispatch(logoutRequest()),
+
+  }
+}
+
+
+const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
+export default MainContainer;

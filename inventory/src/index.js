@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import Main from './components/main'
+// import Main from './components/main'
+import MainContainer from './components/main'
 import LoginContainer from './containers/admloginCon'
 import store from './store/store'
 import { Provider } from 'react-redux';
@@ -33,7 +34,7 @@ export class Routing extends Component {
 
               <Route  path="/" component={LoginContainer}></Route>
   <Route path="/admin" component={LoginContainer}></Route>
-              <Route path="/main" component={Main}>
+              <Route path="/main" component={MainContainer}>
 
                 <Route path="/storeCon" component={StoreContainer}></Route>
                 <Route path="/addproductCon" component={AddproductContainer}></Route>
