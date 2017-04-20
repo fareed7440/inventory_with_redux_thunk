@@ -1,5 +1,6 @@
 import React from 'react'
 import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 const style = {
     height: 80,
@@ -40,6 +41,7 @@ class ViewStock extends React.Component {
                             <TableHeaderColumn style={{ color: "#7B1FA2" }} >Date</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }} >company</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }}> Total Price</TableHeaderColumn>
+                            <TableHeaderColumn style={{ color: "#7B1FA2" }}> Pic</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
 
@@ -55,6 +57,11 @@ class ViewStock extends React.Component {
                                     <TableRowColumn key={i}>{val.date}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.company}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.price}</TableRowColumn>
+                                     <Avatar
+          src={val.pic}
+          size={20}
+          style={style}
+        ></Avatar>
 
                                 </TableRow>
                             )

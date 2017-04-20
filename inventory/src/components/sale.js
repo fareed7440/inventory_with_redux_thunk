@@ -9,8 +9,11 @@ import * as DB from '../firebase/database';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
+import './style.css';
 const styles = {
-    height: 650,
+    height: 1050,
     width: 450,
     margin: 120,
     textAlign: 'center',
@@ -45,10 +48,29 @@ class Sale extends React.Component {
             store: '',
             quantity: '',
             price: '',
+             username: '',
+      avatar: '',
+      isUploading: false,
+      progress: 0,
+      avatarURL:'',
             date: new Date()
         }
         this.handleInputType = this.handleInputType.bind(this)
     }
+
+handleChangeUsername = (event) => this.setState({username: event.target.value});
+  handleUploadStart = () => this.setState({isUploading: true, progress: 0});
+  handleProgress = (progress) => this.setState({progress});
+  handleUploadError = (error) => {
+      this.setState({isUploading: false});
+      console.error(error);
+  }
+  handleUploadSuccess = (filename) => {
+      this.setState({avatar: filename, progress: 100, isUploading: false});
+      firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}));
+  };
+
+
     handleInputType = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value
@@ -97,24 +119,29 @@ class Sale extends React.Component {
         var quantity = parseInt(this.refs.quantity.getValue())
         var price = parseInt(this.refs.price.getValue())
         var date = months + " /" + this.state.date.getDate() + "/" + this.state.date.getFullYear() + " " + " " + " " + hours + ":" + this.state.date.getMinutes() + ":" + this.state.date.getSeconds() + " " + timeconvention;
-        if(date > new Date()){
-            alert('invalid date')
+        
+       console.log(date+ 'dateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+       const date2 = new Date();
+        if(date > date2){
+            return date= date2
+            alert('fh')
         }
         else{
-            return date = new Date()
+            date :date2
         }
         var store = this.state.store;
         var obj = {
             product: product,
             productID: productid,
             quantity: quantity,
-            price: parseInt(price * quantity),
+            price:price,
             date: date,
-            store: store
+            store: store,
+            pic : this.state.avatarURL
         }
         // console.log('1111111', obj)
-        this.props.addSaleRequest(obj)
-        console.log("product ki state", obj)
+         this.props.addSaleRequest(obj)
+        console.log("::::::::::::::::::::::::::::::::::::::::::::::::::", obj)
     }
 
     render() {
@@ -193,7 +220,7 @@ class Sale extends React.Component {
                                 ref='date'
                                 name='date'
                                 style={{ color: '#7B1FA2', textAlign: 'center' }}
-
+                                    maxDate = {new Date()}
                                 floatingLabelText="Select Date "
                                 floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
@@ -221,6 +248,27 @@ class Sale extends React.Component {
                             </SelectField>
 
                             <br /><br /><br />
+          <label>Avatar:</label>
+          {this.state.isUploading &&
+            <p>Progress: {this.state.progress}</p>
+
+          }
+          {this.state.avatarURL &&
+            <img  className = 'img1' src={this.state.avatarURL} />
+          }
+          <FileUploader
+            accept="image/*"
+            name="avatar"
+            randomizeFilename
+            storageRef={firebase.storage().ref('images')}
+            onUploadStart={this.handleUploadStart}
+            onUploadError={this.handleUploadError}
+            onUploadSuccess={this.handleUploadSuccess}
+            onProgress={this.handleProgress}
+          />
+ <br /><br /><br /> 
+
+                           
                             <RaisedButton label="submit" type='submit' disabled={false} style={{ style1, color: 'red' }} />
                             <br /><br /><br />
 

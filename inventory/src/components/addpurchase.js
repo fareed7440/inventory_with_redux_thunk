@@ -101,7 +101,7 @@ class Purchase extends React.Component {
             product: product,
             productID: productid,
             quantity: quantity,
-            price: parseInt(price * quantity),
+            price: price,
             date: date,
             store: store
         }
@@ -187,7 +187,7 @@ class Purchase extends React.Component {
                                 ref='date'
                                 name='date'
                                 style={{ color: '#7B1FA2', textAlign: 'center' }}
-
+                                    maxDate = {new Date()}
                                 floatingLabelText="Select Date "
                                 floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}

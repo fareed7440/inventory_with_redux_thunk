@@ -11,8 +11,8 @@ export function saleAction(storeData) {
         return DB.database.ref(`/products/` + storeData.productID).once('value', (snapshot) => {
 
             console.log('vallllllllllllllllllllll', snapshot.val())
-            if (parseInt(snapshot.val().quantity) < storeData.quantity || parseInt(snapshot.val().price) < storeData.price) {
-                alert('your Quantity or price is less than the sale data')
+            if (parseInt(snapshot.val().quantity) < storeData.quantity) {
+                alert('your Quantity is less than')
 
 
             }
@@ -20,7 +20,7 @@ export function saleAction(storeData) {
                 let total = {
 
                     quantity: (parseInt(snapshot.val().quantity) - parseInt(storeData.quantity)),
-                    price: parseInt(snapshot.val().price) + storeData.price,
+                    price: storeData.price,
                     store: storeData.store
 
                 }
@@ -31,7 +31,8 @@ export function saleAction(storeData) {
                     product: storeData.product,
                     quantity: storeData.quantity,
                     price: storeData.price,
-                    date: storeData.date
+                    date: storeData.date,
+                    pic:storeData.pic
                 }
                 console.log('hhjjjjjjjjjjjjjjjjjjjjjjjjj', saleObject)
 

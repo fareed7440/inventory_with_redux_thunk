@@ -9,8 +9,11 @@ import * as DB from '../firebase/database';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
+import './style.css';
 const styles = {
-    height: 700,
+    height: 1000,
     width: 450,
     margin: 120,
     textAlign: 'center',
@@ -23,15 +26,21 @@ const style1 = {
 const styless = {
     errorStyle: {
         color: '#7B1FA2',
+         textAlign:'center'
     },
     underlineStyle: {
         borderColor: '#7B1FA2',
     },
     floatingLabelStyle: {
         color: '#7B1FA2',
+        textAlign:'center'
     },
+      floatingLabelText:{
+ marginRight:'10'
+      },
     floatingLabelFocusStyle: {
         color: blue500,
+         textAlign:'center'
     },
 };
 class Addproduct extends React.Component {
@@ -39,12 +48,27 @@ class Addproduct extends React.Component {
         super();
         this.state = {
             arr: [],
-            product: '', company: '', quantity: '', price: '', date: new Date(), store: '',
+            product: '', company: '', quantity: '', price: '', date: new Date(), store: '',  avatar: '',
+      isUploading: false,
+      progress: 0,
+      avatarURL:'',
         }
         this.handleFormType = this.handleFormType.bind(this);
         this.handleInputType = this.handleInputType.bind(this)
         // console.log("heeellllllllllllllllllllllllo"  ,this.props.inventoryApplication)
     }
+    handleChangeUsername = (event) => this.setState({username: event.target.value});
+  handleUploadStart = () => this.setState({isUploading: true, progress: 0});
+  handleProgress = (progress) => this.setState({progress});
+  handleUploadError = (error) => {
+      this.setState({isUploading: false});
+      console.error(error);
+  }
+  handleUploadSuccess = (filename) => {
+      this.setState({avatar: filename, progress: 100, isUploading: false});
+      firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}));
+  };
+
     // componentWillMount() {
     //     this.setState({ arr: this.props.app })
     // }
@@ -92,9 +116,10 @@ class Addproduct extends React.Component {
             product: product,
             company: company,
             quantity: quantity,
-           price: parseInt(price * quantity),
+           price: price,
             date: date,
-            store: store
+            store: store,
+             pic : this.state.avatarURL
         }
         console.log('1111111', obj)
         this.props.addPropductRequest(obj)
@@ -180,7 +205,8 @@ class Addproduct extends React.Component {
                                 ref='date'
                                 name='date'
                                 style={{ color: '#7B1FA2', textAlign: 'center' }}
-
+                                 //   minDate = {new Date()}
+                                    maxDate = {new Date()}
                                 floatingLabelText="Select Date "
                                 floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
@@ -189,7 +215,7 @@ class Addproduct extends React.Component {
                             /><br /><br />
                             <SelectField
                                 multiple={false}
-                                floatingLabelStyle={styless.floatingLabelStyle}
+                               floatingLabelStyle={styless.floatingLabelStyle}
                                 floatingLabelFocusStyle={styless.floatingLabelFocusStyle}
                                 floatingLabelText="Select Store "
                                 ref='store'
@@ -197,6 +223,7 @@ class Addproduct extends React.Component {
                                 type='text'
                                 value={this.state.store}
                                 onChange={this.handleStorename}
+                             
                             >
                                 {
                                     Addstore.map((v, i) => {
@@ -208,8 +235,33 @@ class Addproduct extends React.Component {
                             </SelectField>
 
                             <br /><br /><br />
-                            <RaisedButton label="submit" type='submit' disabled={false} style={{ style1, color: 'red' }} />
+                           
+  <label>Avatar:</label>
+          {this.state.isUploading &&
+            <p>Progress: {this.state.progress}</p>
+
+          }
+          {this.state.avatarURL &&
+            <img  className = 'img1' src={this.state.avatarURL} />
+          }
+          <FileUploader
+            accept="image/*"
+            name="avatar"
+            randomizeFilename
+            storageRef={firebase.storage().ref('images')}
+            onUploadStart={this.handleUploadStart}
+            onUploadError={this.handleUploadError}
+            onUploadSuccess={this.handleUploadSuccess}
+            onProgress={this.handleProgress}
+          />
+ <br /><br /><br /> 
+
+  <RaisedButton label="submit" type='submit' disabled={false} style={{ style1, color: 'red' }} />
                             <br /><br /><br />
+
+
+
+
 
                         </form>
                     </Paper>

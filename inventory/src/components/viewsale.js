@@ -1,5 +1,6 @@
 import React from 'react'
 import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 const style = {
     height: 80,
@@ -9,11 +10,15 @@ const style = {
     color:'white',
     textAlign: 'center',
     display: 'inline-block',
+    
 };
 class ViewSale extends React.Component {
     constructor(props) {
         super(props)
-    }
+        this.state = {
+            showCheckboxes: false
+        
+    }}
 
     componentDidMount() {
         this.props.ViewSaleRequest()
@@ -31,19 +36,23 @@ class ViewSale extends React.Component {
                         <h3 style={{ textAlign: 'center' }}>    VIEW SALE</h3>
                     </Paper>
                 </center>
-                <Table>
-                    <TableHeader>
+                <Table >
+                    <TableHeader  
+                     
+                    >
                         <TableRow >
 
                             <TableHeaderColumn style={{ color: "#7B1FA2" }}>Product</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }}>Quantity</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }}>Store</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }} >Date</TableHeaderColumn>
-                            <TableHeaderColumn style={{ color: "#7B1FA2" }}>Price</TableHeaderColumn>
+                            <TableHeaderColumn style={{ color: "#7B1FA2" }}>Price/unit</TableHeaderColumn>
+                            <TableHeaderColumn style={{ color: "#7B1FA2" }}>pic</TableHeaderColumn>
                         </TableRow>
+                       
                     </TableHeader>
 
-                    <TableBody>
+                    <TableBody >
                         {viewsale.map((val, i) => {
                             console.log(val)
                             return (
@@ -54,9 +63,15 @@ class ViewSale extends React.Component {
                                     <TableRowColumn key={i}>{val.store}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.date}</TableRowColumn>
                                     <TableRowColumn key={i}>{val.price}</TableRowColumn>
-
+ <Avatar
+          src={val.pic}
+          size={20}
+          style={style}
+        ></Avatar>
                                 </TableRow>
-                            )
+                                  )
+
+                                  
                         })}
                     </TableBody>
                 </Table>

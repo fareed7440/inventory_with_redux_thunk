@@ -37,7 +37,7 @@ class ViewPurchase extends React.Component {
                             <TableHeaderColumn style={{ color: "#7B1FA2" }}>Quantity</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }}>Store</TableHeaderColumn>
                             <TableHeaderColumn style={{ color: "#7B1FA2" }} >Date</TableHeaderColumn>
-                            <TableHeaderColumn style={{ color: "#7B1FA2" }}>Total Price</TableHeaderColumn>
+                            <TableHeaderColumn style={{ color: "#7B1FA2" }}> Price/unit</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
 
