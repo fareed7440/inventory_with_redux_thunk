@@ -31,7 +31,9 @@ export function purchaseAction(storeData) {
                 product: storeData.product,
                 quantity: storeData.quantity,
                 price: storeData.price,
-                date: storeData.date
+                date: storeData.date,
+                pic:storeData.pic
+
             }
             console.log('hhjjjjjjjjjjjjjjjjjjjjjjjjj', saleObject)
 
